@@ -55,6 +55,7 @@ sed "s/yyyyMMdd/${EXECUTION_DATE}/g" all_file.list > ${NEW_LIST}
 
 # Overwrite the original list with the new list
 mv ${NEW_LIST} all_file.list TODO:is this really necessary?
+yes
 
 # Determine the target product
 PRODUCT=""
