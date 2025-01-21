@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>SHIMA_CMD_TOOL_v6.2</title>
+	<style type="text/css">
+		html{font-family: sans-serif;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%}body{margin: 1em}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display: block}audio,canvas,progress,video{display: inline-block;vertical-align: baseline}audio:not([controls]){display: none;height: 0}[hidden],template{display: none}a{background: transparent}a:active,a:hover{outline: 0}abbr[title]{border-bottom: 1px dotted}b,strong{font-weight: bold;color: #FF3333}}dfn{font-style: italic}h1{font-size: 2em;margin: 0.67em 0}mark{background: #ff0;color: #000}small{font-size: 80%}sub,sup{font-size: 75%;line-height: 0;position: relative;vertical-align: baseline}sup{top: -0.5em}sub{bottom: -0.25em}img{border: 0}svg:not(:root){overflow: hidden}figure{margin: 1em 40px}hr{box-sizing: content-box;height: 0}pre{overflow: auto}code,kbd,pre,samp{font-family: monospace, monospace;font-size: 1em}button,input,optgroup,select,textarea{color: inherit;font: inherit;margin: 0;}button{overflow: visible}button,select{text-transform: none}button,html input[type="button"],input[type="reset"],input[type="submit"]{-webkit-appearance: button;cursor: pointer}button[disabled],html input[disabled]{cursor: default}button::-moz-focus-inner,input::-moz-focus-inner{border: 0;padding: 0}input{line-height: normal}input[type="checkbox"],input[type="radio"]{box-sizing: border-box;padding: 0}input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{height: auto}input[type="search"]{-webkit-appearance: textfield;box-sizing: content-box}input[type="search"]::-webkit-search-cancel-button,input[type="search"]::-webkit-search-decoration{-webkit-appearance: none}fieldset{border: 1px solid #c0c0c0;margin: 0 2px;padding: 0.35em 0.625em 0.75em}legend{border: 0;padding: 0}textarea{overflow: auto}optgroup{font-weight: bold}table{border-collapse: collapse;border-spacing: 0}td,th{padding: 0}*{box-sizing: border-box}input,select,textarea,button{font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"}body{min-width: 1020px;font: 13px/1.4 Helvetica, arial, freesans, clean, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol";color: #333;background-color: #fff}a{color: #4183c4;text-decoration: none}a:hover,a:active{text-decoration: underline}hr,.rule{height: 0;margin: 15px 0;overflow: hidden;background: transparent;border: 0;border-bottom: 1px solid #ddd}hr:before,.rule:before{display: table;content: ""}hr:after,.rule:after{display: table;clear: both;content: ""}h1,h2,h3,h4,h5,h6{margin-top: 15px;margin-bottom: 15px;line-height: 1.1}h1{font-size: 30px}h2{font-size: 21px}h3{font-size: 16px}h4{font-size: 14px}h5{font-size: 12px}h6{font-size: 11px}small{font-size: 90%}blockquote{margin: 0}.lead{margin-bottom: 30px;font-size: 20px;font-weight: 300;color: #555}.text-muted{color: #999}.text-danger{color: #bd2c00}.text-emphasized{font-weight: bold;color: #333}ul,ol{padding: 0;margin-top: 0;margin-bottom: 0}ol ol,ul ol{list-style-type: decimal}ul ul ol,ul ol ol,ol ul ol,ol ol ol{list-style-type: decimal}dd{margin-left: 0}tt,code{font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;font-size: 12px}pre{margin-top: 0;margin-bottom: 0;font: 12px Consolas, "Liberation Mono", Menlo, Courier, monospace}#realtime .status{overflow: visible;position: absolute;top: -5px;left: 0;background: url("/public/images/github-status.png");width: 26px;height: 26px;display: block;margin: 0 5px 0 0}#realtime .up{background-position: 0 0}#realtime .problem{background-position: 0 -53px}#realtime .down{background-position: 0 -26px}.container{max-width: 2400px;margin: 0 auto 20px auto}#header{background: #FAFAFA;background: -moz-linear-gradient(#FAFAFA, #EAEAEA);background: -webkit-linear-gradient(#FAFAFA, #EAEAEA);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#fafafa', endColorstr='#eaeaea')";border-bottom: 1px solid #CACACA;box-shadow: 0 1px 0 rgba(255, 255, 255, 0.4),0 0 10px rgba(0, 0, 0, 0.1)}#markup{padding: 3px}#markup article{padding-top: 30px}.markdown-body{overflow: hidden;font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;font-size: 16px;line-height: 1.6;word-wrap: break-word}.markdown-body>*:first-child{margin-top: 0 !important}.markdown-body>*:last-child{margin-bottom: 0 !important}.markdown-body .absent{color: #c00}.markdown-body .anchor{position: absolute;top: 0;left: 0;display: block;padding-right: 6px;padding-left: 30px;margin-left: -30px}.markdown-body .anchor:focus{outline: none}.markdown-body h1,.markdown-body h2,.markdown-body h3,.markdown-body h4,.markdown-body h5,.markdown-body h6{position: relative;margin-top: 1em;margin-bottom: 16px;font-weight: bold;line-height: 1.4}.markdown-body h1 .octicon-link,.markdown-body h2 .octicon-link,.markdown-body h3 .octicon-link,.markdown-body h4 .octicon-link,.markdown-body h5 .octicon-link,.markdown-body h6 .octicon-link{display: none;color: #000;vertical-align: middle}.markdown-body h1:hover .anchor,.markdown-body h2:hover .anchor,.markdown-body h3:hover .anchor,.markdown-body h4:hover .anchor,.markdown-body h5:hover .anchor,.markdown-body h6:hover .anchor{padding-left: 8px;margin-left: -30px;text-decoration: none}.markdown-body h1:hover .anchor .octicon-link,.markdown-body h2:hover .anchor .octicon-link,.markdown-body h3:hover .anchor .octicon-link,.markdown-body h4:hover .anchor .octicon-link,.markdown-body h5:hover .anchor .octicon-link,.markdown-body h6:hover .anchor .octicon-link{display: inline-block}.markdown-body h1 tt,.markdown-body h1 code,.markdown-body h2 tt,.markdown-body h2 code,.markdown-body h3 tt,.markdown-body h3 code,.markdown-body h4 tt,.markdown-body h4 code,.markdown-body h5 tt,.markdown-body h5 code,.markdown-body h6 tt,.markdown-body h6 code{font-size: inherit}.markdown-body h1{padding-bottom: 0.3em;font-size: 2.25em;line-height: 1.2;border-bottom: 1px solid #eee}.markdown-body h1 .anchor{line-height: 1}.markdown-body h2{padding-bottom: 0.3em;font-size: 1.75em;line-height: 1.225;border-bottom: 1px solid #eee}.markdown-body h2 .anchor{line-height: 1}.markdown-body h3{font-size: 1.5em;line-height: 1.43}.markdown-body h3 .anchor{line-height: 1.2}.markdown-body h4{font-size: 1.25em}.markdown-body h4 .anchor{line-height: 1.2}.markdown-body h5{font-size: 1em}.markdown-body h5 .anchor{line-height: 1.1}.markdown-body h6{font-size: 1em;color: #777}.markdown-body h6 .anchor{line-height: 1.1}.markdown-body p,.markdown-body blockquote,.markdown-body ul,.markdown-body ol,.markdown-body dl,.markdown-body table,.markdown-body pre{margin-top: 0;margin-bottom: 16px}.markdown-body hr{height: 4px;padding: 0;margin: 16px 0;background-color: #e7e7e7;border: 0 none}.markdown-body ul,.markdown-body ol{padding-left: 2em}.markdown-body ul.no-list,.markdown-body ol.no-list{padding: 0;list-style-type: none}.markdown-body ul ul,.markdown-body ul ol,.markdown-body ol ol,.markdown-body ol ul{margin-top: 0;margin-bottom: 0}.markdown-body li>p{margin-top: 16px}.markdown-body dl{padding: 0}.markdown-body dl dt{padding: 0;margin-top: 16px;font-size: 1em;font-style: italic;font-weight: bold}.markdown-body dl dd{padding: 0 16px;margin-bottom: 16px}.markdown-body blockquote{padding: 0 15px;color: #777;border-left: 4px solid #ddd}.markdown-body blockquote>:first-child{margin-top: 0}.markdown-body blockquote>:last-child{margin-bottom: 0}.markdown-body table{display: block;width: 100%;overflow: auto;word-break: normal;word-break: keep-all}.markdown-body table th{font-weight: bold}.markdown-body table th,.markdown-body table td{padding: 6px 13px;border: 1px solid #ddd}.markdown-body table tr{background-color: #fff;border-top: 1px solid #ccc}.markdown-body table tr:nth-child(2n){background-color: #f8f8f8}.markdown-body img{max-width: 100%;box-sizing: border-box}.markdown-body span.frame{display: block;overflow: hidden}.markdown-body span.frame>span{display: block;float: left;width: auto;padding: 7px;margin: 13px 0 0;overflow: hidden;border: 1px solid #ddd}.markdown-body span.frame span img{display: block;float: left}.markdown-body span.frame span span{display: block;padding: 5px 0 0;clear: both;color: #333}.markdown-body span.align-center{display: block;overflow: hidden;clear: both}.markdown-body span.align-center>span{display: block;margin: 13px auto 0;overflow: hidden;text-align: center}.markdown-body span.align-center span img{margin: 0 auto;text-align: center}.markdown-body span.align-right{display: block;overflow: hidden;clear: both}.markdown-body span.align-right>span{display: block;margin: 13px 0 0;overflow: hidden;text-align: right}.markdown-body span.align-right span img{margin: 0;text-align: right}.markdown-body span.float-left{display: block;float: left;margin-right: 13px;overflow: hidden}.markdown-body span.float-left span{margin: 13px 0 0}.markdown-body span.float-right{display: block;float: right;margin-left: 13px;overflow: hidden}.markdown-body span.float-right>span{display: block;margin: 13px auto 0;overflow: hidden;text-align: right}.markdown-body code,.markdown-body tt{padding: 0;padding-top: 0.2em;padding-bottom: 0.2em;margin: 0;font-size: 85%;background-color: rgba(0,0,0,0.04);border-radius: 3px}.markdown-body code:before,.markdown-body code:after,.markdown-body tt:before,.markdown-body tt:after{letter-spacing: -0.2em;content: "\00a0"}.markdown-body code br,.markdown-body tt br{display: none}.markdown-body del code{text-decoration: inherit}.markdown-body pre>code{padding: 0;margin: 0;font-size: 100%;word-break: normal;white-space: pre;background: transparent;border: 0}.markdown-body .highlight{margin-bottom: 16px}.markdown-body .highlight pre,.markdown-body pre{padding: 16px;overflow: auto;font-size: 85%;line-height: 1.45;background-color: #f7f7f7;border-radius: 3px}.markdown-body .highlight pre{margin-bottom: 0;word-break: normal}.markdown-body pre{word-wrap: normal}.markdown-body pre code,.markdown-body pre tt{display: inline;max-width: initial;padding: 0;margin: 0;overflow: initial;line-height: inherit;word-wrap: normal;background-color: transparent;border: 0}.markdown-body pre code:before,.markdown-body pre code:after,.markdown-body pre tt:before,.markdown-body pre tt:after{content: normal}.markdown-body kbd{display: inline-block;padding: 3px 5px;font-size: 11px;line-height: 10px;color: #555;vertical-align: middle;background-color: #fcfcfc;border: solid 1px #ccc;border-bottom-color: #bbb;border-radius: 3px;box-shadow: inset 0 -1px 0 #bbb}.codehilite{background: #ffffff}.codehilite .c{color: #999988;font-style: italic}.codehilite .err{color: #a61717;background-color: #e3d2d2}.codehilite .k{color: #000000;font-weight: bold}.codehilite .o{color: #000000;font-weight: bold}.codehilite .cm{color: #999988;font-style: italic}.codehilite .cp{color: #999999;font-weight: bold}.codehilite .c1{color: #999988;font-style: italic}.codehilite .cs{color: #999999;font-weight: bold;font-style: italic}.codehilite .gd{color: #000000;background-color: #ffdddd}.codehilite .gd .x{color: #000000;background-color: #ffaaaa}.codehilite .ge{color: #000000;font-style: italic}.codehilite .gr{color: #aa0000}.codehilite .gh{color: #999999}.codehilite .gi{color: #000000;background-color: #ddffdd}.codehilite .gi .x{color: #000000;background-color: #aaffaa}.codehilite .go{color: #888888}.codehilite .gp{color: #555555}.codehilite .gs{font-weight: bold}.codehilite .gu{color: #aaaaaa}.codehilite .gt{color: #aa0000}.codehilite .kc{color: #000000;font-weight: bold}.codehilite .kd{color: #000000;font-weight: bold}.codehilite .kp{color: #000000;font-weight: bold}.codehilite .kr{color: #000000;font-weight: bold}.codehilite .kt{color: #445588;font-weight: bold}.codehilite .m{color: #009999}.codehilite .s{color: #d14}.codehilite .na{color: #008080}.codehilite .nb{color: #0086B3}.codehilite .nc{color: #445588;font-weight: bold}.codehilite .no{color: #008080}.codehilite .ni{color: #800080}.codehilite .ne{color: #990000;font-weight: bold}.codehilite .nf{color: #990000;font-weight: bold}.codehilite .nn{color: #555555}.codehilite .nt{color: #000080}.codehilite .nv{color: #008080}.codehilite .ow{color: #000000;font-weight: bold}.codehilite .w{color: #bbbbbb}.codehilite .mf{color: #009999}.codehilite .mh{color: #009999}.codehilite .mi{color: #009999}.codehilite .mo{color: #009999}.codehilite .sb{color: #d14}.codehilite .sc{color: #d14}.codehilite .sd{color: #d14}.codehilite .s2{color: #d14}.codehilite .se{color: #d14}.codehilite .sh{color: #d14}.codehilite .si{color: #d14}.codehilite .sx{color: #d14}.codehilite .sr{color: #009926}.codehilite .s1{color: #d14}.codehilite .ss{color: #990073}.codehilite .bp{color: #999999}.codehilite .vc{color: #008080}.codehilite .vg{color: #008080}.codehilite .vi{color: #008080}.codehilite .il{color: #009999}
+		.markdown-body hr{background:url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAYAAAAECAYAAACtBE5DAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OENDRjNBN0E2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OENDRjNBN0I2NTZBMTFFMEI3QjRBODM4NzJDMjlGNDgiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4Q0NGM0E3ODY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4Q0NGM0E3OTY1NkExMUUwQjdCNEE4Mzg3MkMyOUY0OCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqqezsUAAAAfSURBVHjaYmRABcYwBiM2QSA4y4hNEKYDQxAEAAIMAHNGAzhkPOlYAAAAAElFTkSuQmCC")}
+		.tooltip{ position: relative; cursor: pointer; display: inline-block; } .tooltip p{ margin:0; padding:0; } .description { display: none; position: absolute; padding: 15px; font-size: 12px; line-height: 1.6em; color: #fff; border-radius: 5px; background: #000; width: 400px; } .description:before { content: ""; position: absolute; top: 100%; left: 50%; border: 15px solid transparent; border-top: 15px solid #000; margin-left: -15px; } .tooltip:hover .description{ display: inline-block; top: -58px; left: 30px; }
+		#kptmt .timer {border: 1px solid #000; padding: 10px; margin: 10px 0;} 
+		#kptmt .stopped {background-color: #d3d3d3;} 
+		#kptmt .disabled {background-color: #d3d3d3;} 
+		#kptmt table {width: 100%; border-collapse: collapse;} 
+		#kptmt table, #kptmt th, #kptmt td {border: 1px solid black;} 
+		#kptmt th, #kptmt td {padding: 8px; text-align: left;} 
+		#kptmt th {background-color: #f2f2f2;}
+	</style>
+</head>
+<!-- change log --
+
+| update | timestamp: 2024-10-09 15:33:14 |	fix
+| update | timestamp: 2024-10-09 12:30:24 |	ボタンのsubmitによりページが更新されてしまうバグを修正
+| update | timestamp: 2024-10-08 10:53:48 |	タイマーを追加したときに他全てのタイマーが止まるように変更
+| update | timestamp: 2024-10-03 13:45:19 |	TIME KEEPER機能のデザインを修正
+| update | timestamp: 2024-10-03 13:18:10 |	TIME KEEPER機能を追加
+| update | timestamp: 2024-06-04 15:57:18 |	キュー調査系コマンドを追加
+| update | timestamp: 2023-11-17 14:12:00 |	run遷移コマンドを見栄え良く
+| update | timestamp: 2023-11-17 14:12:00 |	オンマウス展開をクリック展開へ外観変更
+| update | timestamp: 2023-11-17 13:15:14 |	Kintone概要情報ツールのiframeを追加
+| update | timestamp: 2023-05-23 08:25:08 |	対応履歴ツールに突っ込んだ内容に応じてproductを切り替えるように
+| update | timestamp: 2023-05-09 16:19:03 |	対応履歴ツールが、queue滞留など区分をある程度予想して選択するように
+| update | timestamp: 2023-04-19 14:20:41 |	対応記録生成機能を付与するv3へ
+| update | timestamp: 2023-03-14 11:11:40 |	不要な作業ディレクトリ作成コマンドを削除
+| update | timestamp: 2023-03-10 16:35:18 |	メールゲーツ.log とすべきコマンドがウェブメールになっていたのを修正
+| update | timestamp: 2023-03-08 16:30:46 |	ログファイル名生成時に-2が混入するパターンへ対策
+| update | timestamp: 2023-03-01 17:27:38 |	リリース
+| maken	 | timestamp: 2023-02-13 11:14:40 |	ファイル作成
+
+  -- change log -->
+
+<body>
+	<h2>SHIMA_CMD_TOOL_v6.2</h2><div class="container"><div id="markup"><article id="content" class="markdown-body">
+
+	<form name="basicmenu" style="margin:4px;">
+		<input type="button" id="chngprdct2CM" name="prdctbtn" onclick="chng_prdct(event)" style="width:60px;height:40px;" value="CM">
+		<input type="button" id="chngprdct2MG" name="prdctbtn" onclick="chng_prdct(event)" style="width:60px;height:40px;" value="MG">
+		<input type="button" id="chngprdct2MB" name="prdctbtn" onclick="chng_prdct(event)" style="width:60px;height:40px;" value="MB">
+		<BR><input type="text" id="kywrd" placeholder="キュー名などキーワード" value="" size="20" style="margin-top:8px;"> <input type="button" onclick="replace_kywrd()" style="width:60px;height:25px;" value="replace"><BR>
+	</form>
+	<form id="root_list" style="margin:4px;">
+		<div id="groupa">
+			<label style="margin:4px;">事象対象のディレクトリへ移動</label>
+		</div>
+		<div id="groupb">
+		</div>
+	</form>
+	<BR>
+
+
+	<BR>
+	<form id="kptmt" style="background-color: #ffffff;">
+	<h5>TIME KEEPER TOOL v1.0</h5>
+	    <div id="timers"></div>
+	    <button type="button" onclick="addTimer()">タイマーを追加</button>
+	    <hr>
+	    <button type="button" onclick="aggregateData()">集計</button>
+	    <div id="summary"></div>
+	</form>
+	<BR>
+
+
+	<iframe width="822px" height="360px" src="http://172.26.1.29:5002/" style="background-color:#BBBBBB;"></iframe><BR>
+
+
+	<div id="tmpbox" style="display:flex; position:fixed;overflow:scroll;top:8px;left:340px;height:220px;width:calc(100% - 345px);background-color:#E0E0E0">
+		<form style="margin: 8px;">
+		<!-- フォームの内容 -->
+		    <input type="button" onclick="insertDateTime('alert_datetime')" value="事象発生"> <input type="text" id="alert_datetime" size="17em"><BR>
+		    <input type="button" onclick="startworking()" value="対応開始"> <input type="text" id="start_datetime" size="17em">
+			<div style="margin-top: 2px;margin-bottom: 8px;margin-left: 8px;margin-right: 8px;">
+
+			<!-- フォームの内容 -->
+				<kbd style="background-color:#BBBBBB;padding-left:1.0em;padding-right:1.0em;margin-right:1px">対応者</kbd> <input type="text" id="person" size="15em"><BR>
+				<kbd style="background-color:#BBBBBB;padding-left:0.5em;padding-right:0.5em;margin-right:1px">ホスト名</kbd> <input type="text" id="alerthost" size="15em"><BR>
+				<kbd style="background-color:#BBBBBB;padding-left:1.5em;padding-right:1.5em;margin-right:1px">区分</kbd>
+					<select id="alerttype" style="margin-left: 2px;width: 9em">
+						<option value="区分"								>区分</option>
+						<option value="queue滞留"						>queue滞留</option>
+						<option value="不正中継"						>不正中継</option>
+						<option value="不正アクセス"				>不正アクセス</option>
+						<option value="大量送信"						>大量送信</option>
+						<option value="受信不可"						>受信不可</option>
+						<option value="メモリリーク"				>メモリリーク</option>
+						<option value="容量警告"						>容量警告</option>
+						<option value="パフォーマンス警告"	>パフォーマンス警告</option>
+						<option value="サービス停止"				>サービス停止</option>
+						<option value="同期エラー"					>同期エラー</option>
+						<option value="その他"							>その他</option>
+					</select>
+			</div>
+
+		    <input type="button" onclick="endworking()" value="対応終了"> <input type="text" id="end_datetime" size="17em">
+		</form>
+		<form style="margin: -4px;padding-right:4px">
+		<!-- フォームの内容 -->
+			<BR><input type="button" onclick="get_alert_sumally()" value="←取込" >
+			<BR><BR><BR><BR>
+			<BR><kbd style="background-color:#BBBBBB;">出力→</kbd>
+		</form>
+		<form style="margin: 8px;">
+			<textarea cols="48" rows="7" style="margin:2px;resize:none;font-size: 0.5em;" id="alertsummary" ></textarea><BR>
+		    <kbd style="margin-top:-8px;margin-left:8px; margin-right:8px; background-color:#BBBBBB;">経過時間</kbd> <label id="stopwatch" style="font-size:1.2em;margin-top: -90px;">00:00:00</label><BR>
+			<textarea cols="48" rows="2" style="margin:2px;resize:none;font-size: 0.5em;" id="worklog" ></textarea>
+		</form>
+	</div>
+
+
+</body>
+
+<script type="text/javascript">
+	var crnt_prdct="CM";
+	var cmdgrps;
+	var old_kywrd=null;
+	var alertgaiyo="";
+
+	window.onload=function inittool(){
+
+		// ★★★↓自分の名前をこの変数に入れてください★★★
+		var person_is="名前";
+		// ★★★↑自分の名前をこの変数に入れてください★★★
+
+		document.getElementById("person").value=person_is;
+		document.getElementsByName("prdctbtn")[0].click();
+	}
+
+	function chng_prdct(e){
+		crnt_prdct=e.target.value;
+		var prdctbtn=document.getElementsByName("prdctbtn");
+		for(i=0;i<prdctbtn.length;i++){
+			if(prdctbtn[i]==e.target){
+				prdctbtn[i].style.background="#FFF000";
+			} else {
+				prdctbtn[i].style.background="#808080";
+			}
+		}
+		switch(e.target.value){
+			case "CM" :	document.body.style.background="#F0F7FF"; break;
+			case "MG" :	document.body.style.background="#FFE0E0"; break;
+			case "MB" :	document.body.style.background="#F0FFE0"; break;
+			default:
+		}
+		chng_root_list();
+		chng_cmd_list();
+	}
+
+	function insertDateTime(id) {
+		// 現在の日時を取得する
+		const now = new Date();
+
+		// 年月日時分をフォーマットする
+		const year = now.getFullYear();
+		const month = ('0' + (now.getMonth() + 1)).slice(-2);
+		const date = ('0' + now.getDate()).slice(-2);
+		const hours = ('0' + now.getHours()).slice(-2);
+		const minutes = ('0' + now.getMinutes()).slice(-2);
+		const formattedDateTime = `${year}/${month}/${date} ${hours}:${minutes}`;
+
+		// INPUT要素に日時を挿入する
+		document.getElementById(id).value = formattedDateTime;
+	}
+
+	function startworking(){
+		insertDateTime("start_datetime");
+		document.getElementById("stopwatch").innerHTML = "00:00:00";
+		clearInterval(timerInterval);
+		startTime = Date.now();
+		timerInterval = setInterval(update, 10);
+		document.getElementById("stopwatch").style.color = "red";
+
+	}
+
+	function endworking(){
+		insertDateTime("end_datetime");
+		clearInterval(timerInterval);
+		elapsedTime = 0;
+		document.getElementById("stopwatch").style.fontcolor = "#700000";
+
+		var tmpval=""+document.getElementById("alert_datetime").value;
+			tmpval=tmpval+"\t"+document.getElementById("start_datetime").value;
+			tmpval=tmpval+"\t"+document.getElementById("end_datetime").value;
+			tmpval=tmpval+"\t"+document.getElementById("alerthost").value.substring(0, 2).toUpperCase();
+			tmpval=tmpval+"\t"+document.getElementById("alerthost").value;
+			tmpval=tmpval+"\t"+document.getElementById("person").value;
+			var tmpindex=document.getElementById("alerttype").selectedIndex;
+			var tmp_type=document.getElementById("alerttype").options[tmpindex].value.replace(/区分/g,"");
+			tmpval=tmpval+"\t"+tmp_type;
+			tmpval=tmpval+"\t"+alertgaiyo;
+		document.getElementById("worklog").value=tmpval;
+		document.getElementById("stopwatch").style.color = "black";
+		document.getElementById("worklog").select();
+		document.execCommand("Copy");
+
+		alertgaiyo="";
+	}
+
+
+	function get_alert_sumally(){
+	 	var source = document.getElementById("alertsummary").value;
+		var tmpval = source.split("\n");
+		var alerthost = "";
+		var alertdate = "";
+
+
+		for(i=0;i<tmpval.length;i++){
+			if(tmpval[i].includes("発生日時")){
+				alertdate = tmpval[i].split("] : ")[tmpval[i].split("] : ").length -1].replace(/\./g,"/");
+			}
+		}
+
+		for(i=0;i<tmpval.length;i++){
+			if(tmpval[i].includes("対象ホスト")){
+				alerthost = tmpval[i].split("] : ")[tmpval[i].split("] : ").length -1];
+			}
+		}
+
+		for(i=0;i<tmpval.length;i++){
+			if(tmpval[i].includes("PROBLEM")){
+				alertgaiyo =""+tmpval[i];
+			}
+		}
+
+		for(i=0;i<tmpval.length;i++){
+			if(tmpval[i].includes("アイテムキー/値")){
+				var myRegex_queue = /init|wait|run|retry|buggy|qos/;
+				if(myRegex_queue.test(tmpval[i])){
+					document.getElementById("alerttype").value ="queue滞留";
+				}
+
+				var myRegex_load1 = /system\..*\.load/;
+				if(myRegex_load1.test(tmpval[i])){
+					document.getElementById("alerttype").value ="パフォーマンス警告";
+				}
+
+				var myRegex_load2 = /net\..*\.service/;
+				if(myRegex_load2.test(tmpval[i])){
+					document.getElementById("alerttype").value ="パフォーマンス警告";
+				}
+
+				var myRegex_smry  = /PROBLEM/;
+				if(myRegex_smry.test(tmpval[i])){
+					alertgaiyo =""+tmpval[i];
+					alert(""+alertgaiyo);
+				}
+
+			}
+		}
+
+		if(alerthost!=""){
+			switch(alerthost.substring(0, 2).toUpperCase()){
+			case 'CM':document.getElementById("chngprdct2CM").click();break;
+			case 'MG':document.getElementById("chngprdct2MG").click();break;
+			case 'MB':document.getElementById("chngprdct2MB").click();break;
+			default:
+			}
+		}
+
+
+
+		document.getElementById("alert_datetime").value = ""+alertdate;
+		document.getElementById("alerthost").value = ""+alerthost;
+		startworking();
+		document.getElementById("alerthost").select();
+		document.execCommand("Copy");
+	}
+
+
+
+
+	var startTime, elapsedTime = 0, timerInterval;
+	function pad(num, size) {
+		var s = "0000" + num;
+		return s.substr(s.length - size);
+	}
+	function formatTime(time) {
+		var hour = Math.floor(time / 3600000);
+		var min = Math.floor((time - hour * 3600000) / 60000);
+		var sec = Math.floor((time - hour * 3600000 - min * 60000) / 1000);
+		return pad(hour, 2) + ":" + pad(min, 2) + ":" + pad(sec, 2);
+	}
+	function update() {
+		var now = Date.now();
+		elapsedTime += now - startTime;
+		startTime = now;
+		document.getElementById("stopwatch").innerHTML = formatTime(elapsedTime);
+	}
+	function start() {
+		elapsedTime = 0;
+		startTime = Date.now();
+		timerInterval = setInterval(update, 1000);
+	}
+	function stop() {
+		clearInterval(timerInterval);
+	}
+	function reset() {
+		document.getElementById("stopwatch").innerHTML = "00:00:00";
+	}
+
+
+
+
+	function chng_root_list(){
+		var trgt_alph_list=document.getElementById("groupa");
+			trgt_alph_list.innerHTML="";
+		switch(crnt_prdct){
+		case 'CM':crnt_prdctnum=0;break;
+		case 'MG':crnt_prdctnum=1;break;
+		case 'MB':crnt_prdctnum=2;break;
+		default:
+		}
+		var alp_lbl_tmp=document.createElement("label");
+			alp_lbl_tmp.style="margin:4px;";
+			trgt_alph_list.appendChild(alp_lbl_tmp);
+			alp_lbl_tmp.innerHTML="事象対象のディレクトリへ移動";
+
+			trgt_alph_list.appendChild(document.createElement("BR"));
+
+		for(i=0;i<cmd_alpha[crnt_prdctnum].length;i++){
+			var alp_btn_tmp=document.createElement("input");
+				alp_btn_tmp.type="button";
+				alp_btn_tmp.id="cbtn_ar"+i;
+				alp_btn_tmp.style="width:79px;height:25px;";
+				alp_btn_tmp.value=cmd_alpha[crnt_prdctnum][i][0];
+				alp_btn_tmp.setAttribute("onclick", "copy_cmd('ctar_ar"+i+"')");
+				trgt_alph_list.appendChild(alp_btn_tmp);
+
+			if(i%4==3){
+				alp_BR_tmp=document.createElement("BR");
+				trgt_alph_list.appendChild(alp_BR_tmp);
+			}
+
+			var alp_cmd_tmp=document.createElement("textarea");
+				alp_cmd_tmp.id="ctar_ar"+i;
+				alp_cmd_tmp.style="position:fixed;top:-40px;left:-40px;";
+				alp_cmd_tmp.readOnly=true;
+				alp_cmd_tmp.cols="1";
+				alp_cmd_tmp.rows="1";
+				trgt_alph_list.appendChild(alp_cmd_tmp);
+				alp_cmd_tmp.innerHTML=cmd_alpha[crnt_prdctnum][i][1];
+		}
+	}
+
+	function chng_cmd_list(){
+		var trgt_cmd_list=document.getElementById("groupb");
+			trgt_cmd_list.innerHTML="";
+		switch(crnt_prdct){
+		case 'CM':crnt_prdctnum=0;break;
+		case 'MG':crnt_prdctnum=1;break;
+		case 'MB':crnt_prdctnum=2;break;
+		default:
+		}
+
+		for(i=0;i<cmdtl_cmd_raw[crnt_prdctnum].length;i++){
+			var cmd_grp_tmp=document.createElement("div");
+				cmd_grp_tmp.id="group"+i;
+				cmd_grp_tmp.setAttribute("name","cmdgr");
+				trgt_cmd_list.appendChild(cmd_grp_tmp);
+
+			var cmd_lbl_tmp=document.createElement("label");
+				cmd_lbl_tmp.id="group"+i;
+				cmd_lbl_tmp.style="margin:4px";
+				cmd_grp_tmp.appendChild(cmd_lbl_tmp);
+				cmd_grp_tmp.innerHTML=""+cmdtl_cmd_raw[crnt_prdctnum][i][0];
+
+				cmd_grp_tmp.appendChild(document.createElement("BR"));
+
+			for(j=0;j<cmdtl_cmd_raw[crnt_prdctnum][i][1].length;j++){
+
+				var cmd_ttp_tmp=document.createElement("div");
+					cmd_ttp_tmp.id="rcm_tt"+j+"_gr"+i;
+					cmd_ttp_tmp.setAttribute("class", "tooltip");
+					cmd_grp_tmp.appendChild(cmd_ttp_tmp);
+
+				var cmd_btn_tmp=document.createElement("input");
+					cmd_btn_tmp.type="button";
+					cmd_btn_tmp.id="rcm_btn"+j+"_gr"+i;
+					cmd_btn_tmp.setAttribute("onclick", "copy_cmd('rcm_ta"+j+"_gr"+i+"')");
+					cmd_btn_tmp.style="width:80px;height:24px;margin:2px;";
+					cmd_btn_tmp.value="Copy";
+					cmd_ttp_tmp.appendChild(cmd_btn_tmp);
+
+				var cmd_tta_tmp=document.createElement("textarea");
+					cmd_tta_tmp.id="rcm_ta"+j+"_gr"+i;
+					cmd_tta_tmp.cols="144";
+					cmd_tta_tmp.rows="1";
+					cmd_tta_tmp.wrap="soft";
+					cmd_tta_tmp.style="padding:2px;margin-bottom:-8px;resize:none;font-size:0.7em;";
+					cmd_tta_tmp.setAttribute("class","cmdtareas");
+					cmd_ttp_tmp.appendChild(cmd_tta_tmp);
+					cmd_tta_tmp.innerHTML=""+cmdtl_cmd_raw[crnt_prdctnum][i][1][j][0];
+
+				var cmd_dsc_tmp=document.createElement("div");
+					cmd_dsc_tmp.id="rcm_dsc"+j+"_gr"+i;
+					cmd_dsc_tmp.setAttribute("class", "description");
+					cmd_ttp_tmp.appendChild(cmd_dsc_tmp);
+					cmd_dsc_tmp.innerHTML=""+cmdtl_cmd_raw[crnt_prdctnum][i][1][j][1];
+
+				cmd_grp_tmp .appendChild(document.createElement("BR"));
+			}
+
+			if(cmdtl_cmd_raw[crnt_prdctnum][i][2][0]=="DUMMY"){
+				var opt_dtl_tmp=document.createElement("details");
+					opt_dtl_tmp.id="dtlopt"+i;
+					opt_dtl_tmp.style="margin-bottom:16px";
+					opt_dtl_tmp.innerHTML="<summary><kbd style=\"margin-left:16px ;color:#4A7 ;height: 2.2em;\">もっと表示(開閉)</summary>"
+					cmd_grp_tmp.appendChild(opt_dtl_tmp);
+
+				var opt_grp_tmp=document.createElement("div");
+					opt_grp_tmp.id="cmdopt"+i;
+					opt_grp_tmp.setAttribute("name","cmdopt");
+					opt_dtl_tmp.appendChild(opt_grp_tmp);
+
+				for(j=0;j<cmdtl_cmd_raw[crnt_prdctnum][i][2].length;j++){
+					var opt_ttp_tmp=document.createElement("div");
+						opt_ttp_tmp.id="opt_tt"+j+"_gr"+i;
+						opt_ttp_tmp.setAttribute("class", "tooltip");
+						opt_grp_tmp.appendChild(opt_ttp_tmp);
+
+					var opt_btn_tmp=document.createElement("input");
+						opt_btn_tmp.type="button";
+						opt_btn_tmp.id="opt_btn"+j+"_gr"+i;
+						opt_btn_tmp.setAttribute("onclick", "copy_cmd('opt_ta"+j+"_gr"+i+"')");
+						opt_btn_tmp.style="width:80px;height:24px;margin:2px;margin-left:16px;";
+						opt_btn_tmp.value="Copy";
+						opt_ttp_tmp.appendChild(opt_btn_tmp);
+
+					var opt_tta_tmp=document.createElement("textarea");
+						opt_tta_tmp.id="opt_ta"+j+"_gr"+i;
+						opt_tta_tmp.cols="140";
+						opt_tta_tmp.rows="1";
+						opt_tta_tmp.wrap="soft";
+						opt_tta_tmp.style="padding:2px;margin-bottom:-8px;resize:none;font-size:0.7em;";
+						opt_tta_tmp.setAttribute("class","cmdtareas");
+						opt_ttp_tmp.appendChild(opt_tta_tmp);
+						opt_tta_tmp.innerHTML=""+cmdtl_cmd_raw[crnt_prdctnum][i][2][j][0];
+
+					var opt_dsc_tmp=document.createElement("div");
+						opt_dsc_tmp.id="opt_dsc"+j+"_gr"+i;
+						opt_dsc_tmp.setAttribute("class", "description");
+						opt_ttp_tmp.appendChild(opt_dsc_tmp);
+						opt_dsc_tmp.innerHTML=""+cmdtl_cmd_raw[crnt_prdctnum][i][2][j][1];
+
+					opt_grp_tmp.appendChild(document.createElement("BR"));
+				}
+			}
+		}
+		replaceYYYYMMDD();
+	}
+
+	function replace_kywrd(){
+		var targetarea = document.getElementsByClassName("cmdtareas");
+		var kywrd=document.getElementById("kywrd").value;
+		var matchflg=false;
+		for(i=0;i<targetarea.length;i++){
+			if(targetarea[i].innerHTML.match(/REPLACE_HERE/g)){matchflg=true;}
+			targetarea[i].innerHTML=targetarea[i].innerHTML.replace(/REPLACE_HERE/g, kywrd);
+		}
+		if(!matchflg){
+			for(i=0;i<targetarea.length;i++){
+				targetarea[i].innerHTML=targetarea[i].innerHTML.replace(old_kywrd, kywrd);
+			}
+		}
+		old_kywrd=kywrd;
+	}
+
+	function replaceYYYYMMDD(){
+		let d = new Date();
+		var today = ""+d.getFullYear()+(d.getMonth()+1).toString().padStart(2, "0")+d.getDate().toString().padStart(2, "0");
+		var targetarea = document.getElementsByClassName("cmdtareas");
+		for(i=0;i<targetarea.length;i++){
+			targetarea[i].innerHTML=targetarea[i].innerHTML.replace(/YYYYMMDD/g, today);
+		}
+	}
+
+	function copy_cmd(trgt_id){
+		var targetarea=document.getElementsByClassName("cmdtareas");
+		for(i=0;i<targetarea.length;i++){
+			targetarea[i].style.backgroundColor="#FFFFFF";
+		}
+
+		var targetarea=document.getElementById(trgt_id);
+		targetarea.style.backgroundColor="#FFFDDD";
+		targetarea.select();
+		document.execCommand("Copy");
+	}
+
+	var cmd_alpha =[
+		[/*CM*/
+			["init", "cd /webmail/mqueue/init; pwd; date; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["wait", "cd /webmail/mqueue/wait; pwd; date; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["run",  "cd /webmail/mqueue/run; pwd; date; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -1 | while read FILE; do echo -n \"$FILE  PID\"; fuser $FILE 2>/dev/null; echo \" working\" ; done | sed -e \"s/ PID w.*/free/g\" | head -5 | egrep \"$|PID.*\""],
+			["retry","cd /webmail/mqueue/retry; pwd; date; echo $(find -type f | wc -l)個のファイル; find -type f | head -5"],
+			["backup","cd /webmail/mqueue/backup; pwd; date; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["buggy","cd /webmail/mqueue/buggy; pwd; date; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"]
+
+		],[/*MG*/
+			["init","cd /mailgates/mqueue/init; pwd; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["wait","cd /mailgates/mqueue/wait; pwd; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["run","cd /mailgates/mqueue/run; pwd; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -1 | while read FILE; do echo -n \"$FILE  PID\"; fuser $FILE 2>/dev/null; echo \" working\" ; done | sed -e \"s/ PID w.*/free/g\" | head -5 | egrep \"$|PID.*\""],
+			["retry","cd /mailgates/mqueue/retry; pwd; echo $(find -type f | wc -l)個のファイル; find -type f | head -5"],
+			["res","cd /mailgates/mqueue/res; pwd; echo $(find -type f | wc -l)個のファイル; find -type f | head -5"],
+			["qos","cd /mailgates/mqueue/qos; pwd; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["buggy","cd /mailgates/mqueue/buggy; pwd; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["selfqua","cd /mailgates/mqueue/selfqua; pwd; echo $(find -type f | wc -l)個のファイル; find -type f | head -5"]
+		],[/*MB*/
+			["spool","cd /webmail/mbase/var/spool; pwd; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"],
+			["buggy","cd /webmail/mbase/var/buggy; pwd; echo $(($(ls -ltr | wc -l)-1))個のファイル; ls -ltr | head -5"]
+		]];
+
+	var cmdtl_cmd_raw =[
+		[/*CM*/
+			["ログ見る系",
+				[/*rcm*/
+					["fgrep REPLACE_HERE /webmail/mqueue/log/$(uname -n|cut -d. -f1|sed -e 's/\\-.\$//g')_mlog1.log",	"【マージ前mailerdログ】 キーワードで検索"],
+					["fgrep REPLACE_HERE /webmail/mqueue/log/mailerd.log",	"【マージ後mailerdログ】 キーワードで検索"]
+				],
+				[/*opt*/
+					["ls -1t | while read LINE; do echo XXXX ${LINE} XXXX; fgrep ${LINE} /webmail/mqueue/log/$(uname -n|cut -d. -f1|sed -e 's/\\-.\$//g')_mlog1.log; echo; done",	"【マージ前mailerdログ】 カレントの各キューを検索"],
+					["fgrep REPLACE_HERE /webmail/mqueue/log/smtpd.log",	"【smtpdログ】 キーワードで検索"],
+					["tail -40 /webmail/mqueue/log/smtpd.log",	"【smtpdログ】 直近40件"]
+			]	],
+
+			["その他切り分け",
+				[/*rcm*/
+					["for p in httpd smtpd smtpd2 imap4d pop3d mailerd mailerd2 m2kcrond chkusrd sph_srv m2kidxd ; do ps -C ${p} > /dev/null 2>&1 ; if [ $? -eq 0 ] ;then echo -e \"\\e[32mUP\\e[m: ${p}\" ;else echo -e \"\\e[31;5mDOWN\\e[m: ${p}\"; fi ; done",	"主要プロセス状況確認"],
+					["echo REPLACE_HERE | while read LINE; do echo [${LINE}]; grep -n -- $(grep \"boundary=\" ${LINE} | sed -e \"s/.*boundary=\\\"\\(.*\\)\\\"/\\1/g\" |head -1) ${LINE} ; echo \"\"; done",	"キーワードのキューをboundaryチェック"],
+					["find . -type f | xargs -III head -3 II | egrep \"^F\" | sort | uniq -c | sort -r | head -10",	"多い送信元アドレスを確認"],
+					["ls -1t | while read LINE; do echo [${LINE}]; grep -n -- $(grep \"boundary=\" ${LINE} | sed -e \"s/.*boundary=\\\"\\(.*\\)\\\"/\\1/g\" |head -1) ${LINE} ; echo \"\"; done",	"カレント内のメール一括でboundaryチェック"],
+					["dig $(fgrep REPLACE_HERE ./webmail/mg/etc/mg_dmds.conf | tee /dev/tty | sed -e \"s/.*\\(mx.*\\).*\\:.*/\\1/g\")",	"キーワードのドメインをaレコード名前解決できるか"]
+				],
+				[/*opt*/
+					["DUMMY"]
+			]	],
+
+			["作業ディレクトリへ退避",
+				[/*rcm*/
+					["fuser REPLACE_HERE",	"【退避前に確認】ファイルを触ってるプロセス有無"],
+					["mkdir -p /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd));ls -ltr /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd))",	"【日付_カレント名】で作業Dir作成"],
+					["mv ./REPLACE_HERE /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd))/.",	"↑の作業Dirへ退避"],
+					["mkdir -p /mnt/storage/workdir/YYYYMMDD_cm;cd /mnt/storage/workdir/YYYYMMDD_cm/;ls -ltr",	"【MG上で実行】MG側作業Dirを切る"],
+					["scp ./REPLACE_HERE webmail@xxx.xxx.xxx.xxx:/mnt/storage/workdir/YYYYMMDD_cm/.",	"【MGのIPを記入!】MGへ移送"]
+				],
+				[/*opt*/
+					["mkdir -p /mnt/storage/workdir/YYYYMMDD_retry;ls -ltr /mnt/storage/workdir/YYYYMMDD_retry/.",	"【日付_retry】で作業Dir作成"],
+					["find /webmail/mqueue/retry/ -type f | xargs -i egrep -H \"REPLACE_HERE\" {} | awk -F\":\" '{print $1}' | sort | uniq | xargs -i echo mv {} /mnt/storage/workdir/YYYYMMDD_retry/.",	"retry配下を跨いで移送するコマンド候補を出力する"]
+			]	],
+
+			["対応後の確認",
+				[/*rcm*/
+					["mv ./REPLACE_HERE /webmail/mqueue/wait/.",	"waitへ戻す"],
+					["fgrep REPLACE_HERE /webmail/mqueue/log/$(uname -n|cut -d. -f1|sed -e 's/\\-.\$//g')_mlog1.log| fgrep [OK]",	"配送されたかログ確認"]
+				],
+				[/*opt*/
+					["DUMMY"]
+				]
+			]
+		],
+
+		[/*MG*/
+			["ログ見る系",
+				[/*rcm*/
+					["fgrep REPLACE_HERE /mailgates/mqueue/log/mgmailerd.log",	"【mgmailerdログ】キーワードで検索"],
+					["tail -40 /mailgates/mqueue/log/mgmailerd.log",	"【mgmailerdログ】直近40件"]
+				],
+				[/*opt*/
+					["ls -1t | while read LINE; do echo XXXX ${LINE} XXXX; fgrep ${LINE} /mailgates/mqueue/log/mgmailerd.log; echo; done",	"【mgmailerdログ】カレント内の各キューを検索"],
+					["fgrep REPLACE_HERE /mailgates/mqueue/log/mgsmtpd.log",	"【smtpdログ】 キーワードで検索"],
+					["tail -40 /mailgates/mqueue/log/mgsmtpd.log",	"【smtpdログ】 直近40件"]
+					["fgrep \"MGTAG\" /mailgates/mqueue/log/mgmailerd.log | cut -c 2-16 |sort|uniq -c| awk '{printf $2\" \" ;printf $3\"0\";printf \"%7s \",$1; for (i=1; i<=$1*0.01;i++) printf \"#\";print \"\r\"}'",	"時間ごとの流量調べる"]
+			]	],
+
+			["配下のキュー調べる",
+				[/*rcm*/
+					["find ./ -type f | xargs -i head -5 {} | egrep ^F.*@ | sort | uniq -c | sort -nr|head -10",	"多い送信元トップ10"],
+					["find ./ -type f | xargs -i head -5 {} | egrep ^R.*@ | awk -F' ' '{print $1}' | sort | uniq -c | sort -nr|head -10",	"多い宛先トップ10"],
+					["find ./ -type f | xargs -i nkf -w {}| egrep \"^Subject\"| sed -e \"s/Subject\://g\" | sort | uniq -c |sort -nr|head -10",	"多い件名トップ10"]
+				],
+				[/*opt*/
+					["find ./ -type f | while read FILE;do echo \"====TOTALQUEUE====\"; echo -n \"envFrom: \"; egrep \"^F.*@\" $FILE| fgrep -v \"From:\" | cut -c 2- ; echo \"\"; egrep -B 999 \"^E$\" $FILE | egrep \"^R.*@\"| egrep -v \"Return\-[Pp]\"|sed -e \"s/^R/To     : /g\" ; nkf -w $FILE | egrep \"^[Ss]ubject\:*\" | head -1; echo -n \"orgFrom: \"; fgrep \"envelope-from\" $FILE|tail -1| sed -e \"s/.*envelope\-from[= ]<\(\S*\)>.*/\1/g\"; echo \"\"; nkf -w $FILE | egrep \"^[Ss]ubject\:*\" | tail -1|sed -e \"s/Subject/orgSubj/g\"; done|egrep -v \"^$\"",	"元先件名全部出す"],
+					["find /mailgates/mqueue/retry/ -type f | xargs -i egrep -H \"REPLACE_HERE\" {} | awk -F\":\" '{print $1}' | sort | uniq | xargs -i echo mv {} /mnt/storage/workdir/YYYYMMDD_retry/.",	"retry配下を跨いで移送するコマンド候補を出力する"]
+			]	],
+
+			["その他切り分け",
+				[/*rcm*/
+					["fgrep REPLACE_HERE /mailgates/mqueue/log/mgmailerd.log| fgrep MGTAG | egrep -v \"[ぁ-んァ-ン亜-熙　-】]\"",	"不正中継疑惑"],
+					["for p in httpd sph_srv mg_audit_joblist_mgr mg_att2link_joblist_mgr milo2 redis-server java mgrcd mgmailerd syncd ctasd.bin mgsmtpd ; do ps -C ${p} > /dev/null 2>&1 ; if [ $? -eq 0 ] ;then echo -e \"\\e[32mUP\\e[m: ${p}\" ;else echo -e \"\\e[31;5mDOWN\\e[m: ${p}\"; fi ; done",	"主要プロセス状況確認"],
+					["ls -1 | fgrep -v _bk| while read LINE; do echo [${LINE}]; grep -n -- $(grep \"boundary=\" ${LINE} | sed -e \"s/.*boundary=\\\"*\\(.*\\)\\\"*.*/\\1/g\" -e \"s/\\\"//g\" |head -1) ${LINE} ; echo \"\"; done",	"キーワードのキューをboundaryチェック"],
+					["echo log: ; fgrep REPLACE_HERE /mailgates/mqueue/log/mgmailerd.log | egrep \"\\[RES.*minutes\\.\\]\" | tee /dev/tty | sed \"s/.*<\\(.*\\)> \\-> <\\(\\S*\\)> (\\(.*\\)\\/.[0-9]*)\\[RES.*/\\1.*\\2.*\\3/g\" | uniq | xargs -IXXX bash -c \"cat /mailgates/mg/etc/mg_host_type.conf | sed -e \\\"s/.*P\\([0-9\\.]*\\),.*/\\nmaybe run this on \\1:\\n/g\\\" && echo \\\"egrep \\\\\\\"XXX\\\\\\\" /mailgates/mqueue/log/mgmailerd.log\\\"\"",	"遅延配送がPriから遅れているか確認"],
+
+					["cat /mailgates/mg/etc/mg_host_type.conf | sed -e \"s/.*P\\([0-9\\.]*\\),.*/Primary: \\1\\n/g\"",	"Primary機のMGをIPで確認"]
+				],
+				[/*opt*/
+					["find . -type f | xargs -III head -3 II | egrep \"^F\" | sort | uniq -c | sort -r | head -10",	"多い送信元アドレスを確認"],
+					["ls -1t | while read LINE; do echo [${LINE}]; grep -n -- $(grep \"boundary=\" ${LINE} | sed -e \"s/.*boundary=\\\"\\(.*\\)\\\"/\\1/g\" |head -1) ${LINE} ; echo \"\"; done",	"カレント内のメール一括でboundaryチェック"],
+					["dig $(fgrep REPLACE_HERE ./mailgates/mg/etc/mg_dmds.conf | tee /dev/tty | sed -e \"s/.*\\(mx.*\\).*\\:.*/\\1/g\")",	"キーワードのドメインをaレコード名前解決できるか"]
+			]	],
+
+			["作業ディレクトリへ退避",
+				[/*rcm*/
+					["fuser REPLACE_HERE",	"【退避前に確認】ファイルを触ってるプロセス有無"],
+					["mkdir -p /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd));ls -ltr /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd))",	"【日付_カレント名】で作業Dir作成"],
+					["mv ./REPLACE_HERE /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd))/.",	"↑で作成した作業Dirへ移す"]
+				],
+				[/*opt*/
+					["mkdir -p /mnt/storage/workdir/YYYYMMDD_retry;ls -ltr /mnt/storage/workdir/YYYYMMDD_retry/.",	"【日付_retry】で作成"],
+					["find /mailgates/mqueue/retry/ -type f | xargs -i egrep -H \"REPLACE_HERE\" {} | awk -F\":\" '{print $1}' | sort | uniq | xargs -i echo mv {} /mnt/storage/workdir/YYYYMMDD_retry/.",	"retry配下を跨いで移送するコマンド候補を出力する"]
+			]	],
+
+			["対応後の確認",
+				[/*rcm*/
+					["mv ./REPLACE_HERE /mailgates/mqueue/wait/.",	"waitへ戻す"],
+					["fgrep REPLACE_HERE /mailgates/mqueue/log/mgmailerd.log| fgrep MGTAG",	"配送されたか確認"]
+				],
+				[/*opt*/
+					["DUMMY"]
+				]
+			]
+		],
+
+
+		[/*MB*/
+			["ログ見る系",
+				[/*rcm*/
+					["tail -f /webmail/mbase/var/log/mbtransd.log",	"mbtransdログ動いてるか? (Ctrl+Cで抜ける)"],
+					["tail -f /webmail/mbase/var/log/mbdup_merge.log",	"mbdup_mergeログ動いてるか? (Ctrl+Cで抜ける)"],
+					["tail -f /webmail/mbase/var/log/mbased.log",	"mbasedログ動いてるか? (Ctrl+Cで抜ける)"]
+				],
+				[/*opt*/]
+			],
+			["滞留状況確認",
+				[/*rcm*/
+					["find /webmail/mbase/var/spool -type f -ls | head -5; echo -e \\\\n$(($(find /webmail/mbase/var/spool -type f -ls | wc -l)-1))個のファイル;find /webmail/mbase/var/spool -type f -ls | awk '{print $10}' | sort | uniq -c",	"滞留状況確認"]
+				],
+				[/*opt*/
+					["head -8 $(ls -1tr /webmail/mbase/var/spool |head -25000) | egrep ^R.*@ | awk -F\"@\" '{print $2}' | sort | uniq -c | sort -r | head",	"滞留メール内ドメイン集計(From)"],
+					["head -3 $(ls -1tr /webmail/mbase/var/spool |head -25000) | egrep ^f.*@ | awk -F\"@\" '{print $2}' | sort | uniq -c | sort -r | head",	"滞留メール内ドメイン集計(To)"]
+			]	],
+			["作業ディレクトリへ退避",
+				[/*rcm*/
+					["fuser REPLACE_HERE",	"【退避前に確認】ファイルを触ってるプロセス有無"],
+					["mkdir -p /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd));ls -ltr /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd))",	"【日付_カレント名】で作業Dir作成"],
+					["mv ./REPLACE_HERE /mnt/storage/workdir/YYYYMMDD_$(basename $(pwd))/.",	"↑で作成した作業Dirへ退避"]
+				],
+				[/*opt*/]
+			],
+			["稼働確認",
+				[/*rcm*/
+					["top -n 1 | head -10; df -H /webmail/mbase/var/spool;dstat -tal 1 0",	"稼働状況確認"]
+			],
+				[/*opt*/]
+			],
+			["そのうち作成&#13091;",
+				[/*rcm*/
+					["command1",	"説明1"]
+			],
+				[/*opt*/
+					["command2",	"説明2"]
+			]	]
+		]
+	];
+
+</script>
+
+
+<script>
+    let timerId = 0;
+
+    function addTimer() {
+        // 既存のすべての動いているタイマーを一時停止
+        for (let id in timers) {
+            if (!timers[id].paused && !timers[id].stopped) {
+                pauseTimer(parseInt(id));
+            }
+        }
+
+        const timerContainer = document.getElementById('timers');
+        const timerElement = document.createElement('div');
+        timerElement.className = 'timer';
+        timerElement.id = `timer-${timerId}`;
+        timerElement.innerHTML = `
+		        <button type="button" onclick="pauseResumeTimer(${timerId})">一時停止/再開</button>
+            <select id="dropdown-${timerId}">
+                <option value="アラート対応">アラート対応</option>
+                <option value="問い合わせ対応">問い合わせ対応</option>
+                <option value="デリバリ">デリバリ</option>
+                <option value="メンテナンス">メンテナンス</option>
+                <option value="案件対応">案件対応</option>
+                <option value="MTG">MTG</option>
+                <option value="資料作成">資料作成</option>
+                <option value="契約/発注">契約/発注</option>
+                <option value="その他">その他</option>
+            </select>
+            <input type="text" id="notes-${timerId}" style="width: 300px;" placeholder="備考欄">
+            <button type="button" onclick="stopTimer(${timerId})">終了</button>&emsp;
+						<button type="button" onclick="overwriteStartTime(${timerId})" id="renew-${timerId}" style="background-color: #eedddd;">開始時刻を現在に上書き</button><br>
+            &emsp; 開始時刻: <span id="start-time-${timerId}">--:--:--</span>
+            &emsp; 終了時刻: <span id="end-time-${timerId}">--:--:--</span>
+            &emsp; 所要時間: <span id="elapsed-time-${timerId}">0:00:00</span>
+
+        `;
+        timerContainer.appendChild(timerElement);
+        startTimer(timerId);
+        timerId++;
+    }
+
+    const timers = {};
+
+    function startTimer(id) {
+        if (!timers[id]) {
+            const now = new Date();
+            timers[id] = {
+                startTime: now,
+                elapsed: 0,
+                interval: setInterval(() => updateTimer(id), 1000),
+                stopped: false,
+                paused: false
+            };
+            document.getElementById(`start-time-${id}`).textContent = now.toLocaleTimeString();
+        }
+    }
+
+    function updateTimer(id) {
+        const timer = timers[id];
+        if (timer.stopped || timer.paused) return;
+        const now = Date.now();
+        const elapsed = timer.elapsed + (now - timer.startTime.getTime());
+        const hours = Math.floor(elapsed / (1000 * 60 * 60));
+        const minutes = Math.floor((elapsed % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((elapsed % (1000 * 60)) / 1000);
+        document.getElementById(`elapsed-time-${id}`).textContent = `${hours}:${minutes}:${seconds.toString().padStart(2, '0')}`;
+    }
+
+		function pauseResumeTimer(id) {
+		    // 既存のすべての動いているタイマーを一時停止
+		    for (let timerId in timers) {
+		        if (!timers[timerId].paused && !timers[timerId].stopped && timerId != id) {
+		            pauseTimer(parseInt(timerId));
+		        }
+		    }
+		    const timer = timers[id];
+		    if (timer.stopped) return;
+		    if (timer.interval) {
+		        pauseTimer(id);
+		    } else {
+		        timer.startTime = new Date();
+		        timer.interval = setInterval(() => updateTimer(id), 1000);
+		        timer.paused = false;
+		    }
+		}
+
+		function pauseTimer(id) {
+		    const timer = timers[id];
+		    if (timer.interval) {
+		        clearInterval(timer.interval);
+		        timer.interval = null;
+		        timer.elapsed += Date.now() - timer.startTime.getTime();
+		        timer.paused = true;
+		    }
+		}
+
+    function stopTimer(id) {
+        const timer = timers[id];
+        if (timer.interval) {
+            clearInterval(timer.interval);
+            timer.interval = null;
+            timer.elapsed += Date.now() - timer.startTime.getTime();
+        }
+        if (!timer.stopped) {
+            timer.stopped = true;
+            const now = new Date();
+            document.getElementById(`end-time-${id}`).textContent = now.toLocaleTimeString();
+            document.getElementById(`timer-${id}`).classList.add('stopped');
+            document.getElementById(`renew-${id}`).classList.add('stopped');
+        }
+    }
+
+    function overwriteStartTime(id) {
+        const timer = timers[id];
+        if (timer.stopped) return; // タイマーが停止している場合は処理を行わない
+
+        // 既存のすべての動いているタイマーを一時停止
+        for (let id in timers) {
+            if (!timers[id].paused && !timers[id].stopped) {
+                pauseTimer(parseInt(id));
+            }
+        }
+
+        clearInterval(timer.interval);
+        timer.interval = null;
+        const now = new Date();
+        timer.startTime = now;
+        timer.elapsed = 0;
+        document.getElementById(`start-time-${id}`).textContent = now.toLocaleTimeString();
+        document.getElementById(`elapsed-time-${id}`).textContent = '0:00:00';
+        timer.interval = setInterval(() => updateTimer(id), 1000);
+        timer.paused = false;
+    }
+
+    function aggregateData() {
+        const summaryDiv = document.getElementById('summary');
+        summaryDiv.innerHTML = ''; // Clear previous summary
+
+        const table = document.createElement('table');
+        const headerRow = document.createElement('tr');
+
+        const headers = ['種別', '内容', '稼働', '開始時刻', '終了時刻'];
+        headers.forEach(headerText => {
+            const header = document.createElement('th');
+            const textNode = document.createTextNode(headerText);
+            header.appendChild(textNode);
+            headerRow.appendChild(header);
+        });
+
+        table.appendChild(headerRow);
+
+        for (let i = 0; i < timerId; i++) {
+            const timerElement = document.getElementById(`timer-${i}`);
+            if (timerElement) {
+                const row = document.createElement('tr');
+
+                const dropdown = document.getElementById(`dropdown-${i}`).value;
+                const notes = document.getElementById(`notes-${i}`).value;
+                const elapsedTime = document.getElementById(`elapsed-time-${i}`).textContent;
+                const startTime = document.getElementById(`start-time-${i}`).textContent;
+                const endTime = document.getElementById(`end-time-${i}`).textContent;
+
+                const data = [dropdown, notes, elapsedTime, startTime, endTime];
+                data.forEach(text => {
+                    const cell = document.createElement('td');
+                    const textNode = document.createTextNode(text);
+                    cell.appendChild(textNode);
+                    row.appendChild(cell);
+                });
+
+                table.appendChild(row);
+            }
+        }
+
+        summaryDiv.appendChild(table);
+    }
+</script>
+</html>
+
