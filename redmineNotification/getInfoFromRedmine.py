@@ -24,7 +24,7 @@ redmine_url = "http://http://172.28.4.200/redmine"
 api_key = "549762c7d415b82b5ce3a28e82973b66a4da2e8a"
 
 server = Redmine(redmine_url,key=api_key)
-project = server.projects.get('test')
+project = server.projects.all
 
 #endregion
 
