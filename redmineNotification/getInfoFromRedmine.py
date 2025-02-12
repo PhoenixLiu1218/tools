@@ -24,7 +24,7 @@ redmine_url = "http://http://172.28.4.200/redmine"
 api_key = "549762c7d415b82b5ce3a28e82973b66a4da2e8a"
 
 server = Redmine(redmine_url,key=api_key)
-project = server.projects['test']
+project = server.projects.get('test')
 
 #endregion
 
@@ -42,10 +42,8 @@ lastUpdatedTime = ""
 
 #endregion
 
-for issue in project.issues(assigned_to_id=repoter.id):
-    if issue.due_date is not None:
-       issue.due_date += relativedelta(weeks=+2)
-       issue.save('Giving Eric more time to complete - he was out ill')
+for issue in project.issues:
+    print(issue)
 
 
 
