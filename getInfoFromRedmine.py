@@ -8,6 +8,8 @@ import json
 
 #endregion
 
+
+
 #region Global variables
 
 status_dict = {}
@@ -15,6 +17,8 @@ targetStatus = 'Wait_CS'
 repoter = ""
 
 #endregion
+
+
 
 #region Connection configuration
 
@@ -38,6 +42,8 @@ redmine = Redmine(redmine_url,key=api_key)
 
 #endregion
 
+
+
 #region Functions
 
 def setStatusId():
@@ -51,11 +57,15 @@ def setStatusId():
 
 #endregion
 
+
+
 #region Ticket info
 
 ticketStatus = setStatusId()
 
 #endregion
+
+
 
 #region Main
 
