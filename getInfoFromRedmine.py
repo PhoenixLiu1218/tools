@@ -1,10 +1,3 @@
-#region TODO
-
-# get the data by api
-
-
-#endregion
-
 #region Imports
 
 # import requests
@@ -15,44 +8,61 @@ import json
 
 #endregion
 
-#region API configuration
+#region Global variables
 
-# redmine_url = "http://172.16.58.128"
-# api_key = "4b9644679baed77016eb3735c0baf7dd96f4b224"
-
-redmine_url = "http://172.28.4.200/redmine"
-api_key = "549762c7d415b82b5ce3a28e82973b66a4da2e8a"
-
-server = Redmine(redmine_url,key=api_key)
-project = server.issue.all()
+status_dict = {}
+targetStatus = 'Wait_CS'
+repoter = ""
 
 #endregion
 
-#region Ticket info
+#region Connection configuration
 
-ticketStatus = "Wait_CS"
-repoter = "test"
-lastUpdatedTime = ""
+#region API part
+
+redmine_url = "http://172.16.58.128"
+api_key = "4b9644679baed77016eb3735c0baf7dd96f4b224"
+
+# redmine_url = "http://172.28.4.200/redmine"
+# api_key = "549762c7d415b82b5ce3a28e82973b66a4da2e8a"
+
+redmine = Redmine(redmine_url,key=api_key)
+
+#endregion
+
+#region DB part
+
+
+
+#endregion
 
 #endregion
 
 #region Functions
 
+def setStatusId():
+    result_all = redmine.issue_status.all()
+    status_dict = {status.id: status.name for status in result_all}
+
+    for status_id, name in status_dict.items():
+        if targetStatus.lower() == str(name).lower():
+            return status_id
+    return None
+
+#endregion
+
+#region Ticket info
+
+ticketStatus = setStatusId()
 
 #endregion
 
 #region Main
 
-for issue in project:
-    print(f"ID: {issue.id}")
-    print(f"Subject: {issue.subject}")
-    # print(f"Description: {issue.description}")
-    print(f"Status: {issue.status}")
-    # print(f"Priority: {issue.priority}")
-    print(f"Author: {issue.author}")
-    # print(f"Assigned to: {issue.assigned_to}")
-    print(f"Created on: {issue.created_on}")
-    print(f"Updated on: {issue.updated_on}")
-    print("-" * 40)
+date = (datetime.today() - timedelta(days=3)).strftime("%Y-%m-%d")
+issues = redmine.issue.filter(status_id=ticketStatus,updated_on=f"<={date}")
+
+for issue in issues:
+    print(f"ID: {issue.id}, Subject: {issue.subject},Last Updated: {issue.updated_on}")
 
 #endregion
