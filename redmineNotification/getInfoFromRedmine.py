@@ -1,10 +1,3 @@
-#region TODO
-
-# get the data by api
-
-
-#endregion
-
 #region Imports
 
 # import requests
@@ -15,54 +8,71 @@ import json
 
 #endregion
 
-#region API configuration
 
-# redmine_url = "http://172.16.58.128"
-# api_key = "4b9644679baed77016eb3735c0baf7dd96f4b224"
 
-redmine_url = "http://http://172.28.4.200/redmine"
-api_key = "549762c7d415b82b5ce3a28e82973b66a4da2e8a"
+#region Global variables
 
-server = Redmine(redmine_url,key=api_key)
-project = server.projects.all
+status_dict = {}
+targetStatus = 'Wait_CS'
+repoter = ""
 
 #endregion
 
-#region Ticket info
 
-ticketStatus = "Wait_CS"
-repoter = "test"
-lastUpdatedTime = ""
+
+#region Connection configuration
+
+#region API part
+
+redmine_url = "http://172.16.58.128"
+api_key = "4b9644679baed77016eb3735c0baf7dd96f4b224"
+
+# redmine_url = "http://172.28.4.200/redmine"
+# api_key = "549762c7d415b82b5ce3a28e82973b66a4da2e8a"
+
+redmine = Redmine(redmine_url,key=api_key)
 
 #endregion
+
+#region DB part
+
+
+
+#endregion
+
+#endregion
+
+
 
 #region Functions
 
+def setStatusId():
+    result_all = redmine.issue_status.all()
+    status_dict = {status.id: status.name for status in result_all}
 
+    for status_id, name in status_dict.items():
+        if targetStatus.lower() == str(name).lower():
+            return status_id
+    return None
 
 #endregion
 
-for issue in project.issues:
-    print(issue)
+
+
+#region Ticket info
+
+ticketStatus = setStatusId()
+
+#endregion
 
 
 
+#region Main
 
-# url = (f"{redmine_url}/projects/{project_id}/issues.json?key={api_key}"
-#        f"&updated_on=><{start_date}|{end_date}")
+date = (datetime.today() - timedelta(days=3)).strftime("%Y-%m-%d")
+issues = redmine.issue.filter(status_id=ticketStatus,updated_on=f"<={date}")
 
+for issue in issues:
+    print(f"ID: {issue.id}, Subject: {issue.subject},Last Updated: {issue.updated_on}")
 
-
-# end_date = datetime.now().date()
-# start_date = end_date - timedelta(days=30)
-
-
-# response = requests.get(url)
-
-# if response.status_code == 200:
-#     issues = response.json()
-
-#     formatted_issues = json.dumps(issues, indent=4, ensure_ascii=False)
-#     print(formatted_issues)
-# else:
-#     print("Error:", response.status_code, response.text)
+#endregion
