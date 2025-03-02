@@ -2,6 +2,11 @@
 PATH=$PATH:/sbin:/usr/sbin
 export PATH
 
+# lckファイルが存在する場合、即終了
+if [ -f "/webmail/extra_tools/cgi_downfile500549_check.lck" ]; then
+    exit 0
+fi
+
 # 多重起動防止
 LOCK=/tmp/cgi_downfile500549_check.lock
 exec 44> $LOCK
@@ -114,6 +119,9 @@ if [ "$(find ${workdir}/mqueue* -mindepth 1 -maxdepth 1 -type f |wc -l)" -gt "0"
     mv ${workdir}/mqueue/* ${workdir}/processed/mqueue/
     mv ${workdir}/mqueue2/* ${workdir}/processed/mqueue2/
 fi
+
+# このスクリプトをロックする、５分後に解除
+touch /webmail/extra_tools/cgi_downfile500549_check.lck
 
 # LOCK開放
 /bin/rm $LOCK
