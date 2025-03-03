@@ -1,6 +1,6 @@
 #region Imports
 
-# import requests
+import requests
 from redminelib import Redmine
 from dateutil.relativedelta import relativedelta
 from datetime import datetime, timedelta
@@ -12,9 +12,8 @@ import json
 
 #region Global variables
 
-status_dict = {}
 targetStatus = 'Wait_CS'
-repoter = ""
+author = ""
 
 #endregion
 
@@ -24,11 +23,18 @@ repoter = ""
 
 #region API part
 
-redmine_url = "http://172.16.58.128"
-api_key = "4b9644679baed77016eb3735c0baf7dd96f4b224"
+# home test
+# redmine_url = "http://172.16.58.128"
+# api_key = "4b9644679baed77016eb3735c0baf7dd96f4b224"
 
+# company test
 # redmine_url = "http://172.28.4.200/redmine"
 # api_key = "549762c7d415b82b5ce3a28e82973b66a4da2e8a"
+
+# OF
+redmine_url = "https://redmine.office.openfind.com.tw/"
+api_key = "0c0fdc47d644bb54d0bf75a23e8d00d734be9df1"
+
 
 redmine = Redmine(redmine_url,key=api_key)
 
@@ -55,6 +61,11 @@ def setStatusId():
             return status_id
     return None
 
+def getID():
+    user = redmine.user.get('current')
+    # print(f"User ID: {user.id}, Login: {user.login}, Name: {user.firstname} {user.lastname}")
+    return user.id
+
 #endregion
 
 
@@ -62,6 +73,9 @@ def setStatusId():
 #region Ticket info
 
 ticketStatus = setStatusId()
+# getUserList()
+userID = getID()
+
 
 #endregion
 
@@ -70,7 +84,7 @@ ticketStatus = setStatusId()
 #region Main
 
 date = (datetime.today() - timedelta(days=3)).strftime("%Y-%m-%d")
-issues = redmine.issue.filter(status_id=ticketStatus,updated_on=f"<={date}")
+issues = redmine.issue.filter(status_id=ticketStatus,updated_on=f"<={date}",author_id=userID)
 
 for issue in issues:
     print(f"ID: {issue.id}, Subject: {issue.subject},Last Updated: {issue.updated_on}")
