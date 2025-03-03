@@ -2,12 +2,9 @@
 PATH=$PATH:/sbin:/usr/sbin
 export PATH
 
-lckFile=/webmail/extra_tools/cgi_downfile500549_check.lck
-tmpFile=/tmp/cgi_downfile500549_check.lock
-
 # 500ツールを解除
-if [ -f "${tmpFile}" ]; then
-    exit 0
+if [ "$(find /webmail/extra_tools/ -type f -mmin +10 -name "cgi_downfile500549_check.lck")" ]; then
+    rm -f /webmail/extra_tools/cgi_downfile500549_check.lck
 else
-    rm ${lckFile}
+    exit 0
 fi
