@@ -23,10 +23,6 @@ LOGDIR=/mnt/storage/workdir/cgi_downfile500549_check_20240809/$(date "+%Y%m%d")
 LOGFILE=${LOGDIR}/cgi_downfile500549_check_$(uname -n|cut -d. -f1)_$(date "+%Y%m%d").log
 moveFlag=0
 
-# ログファイルが存在しない場合、即終了
-if [ ! -f "${LATEST_LOGFILE}" ]; then
-    exit 0
-fi
 
 # 最後の「/cgi-bin/downfile/ ... 500 549」エラーの時刻を取得
 LASTERROR="$(egrep 'cgi-bin\/downfile.* 500 549' $LATEST_LOGFILE |tail -1|cut -d' ' -f4 |sed -e 's/.//'|sed -e 's/\// /g'|sed 's/:/ /')"
