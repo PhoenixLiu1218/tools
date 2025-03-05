@@ -1,0 +1,30 @@
+services:
+  python:
+    build: ./python/
+    command: sh -c "python3 infoUpdate.py;sleep 500s"
+    # command: sh -c "python3 getInfoFromRedmine.py;sleep 500s"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      - python-data:/var/lib/python/data/
+  mysql:
+    build: ./db/
+    environment:
+      MYSQL_DATABASE: 'test'
+      MYSQL_ROOT_PASSWORD: 123
+      MYSQL_TCP_PORT: 3306
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+    tty: true
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 2
+
+volumes:
+    db:
+    python-data:
