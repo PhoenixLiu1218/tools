@@ -2,9 +2,11 @@ FROM oraclelinux:9
 
 WORKDIR /opt
 
-COPY infoUpdate.py ./
-
 COPY getInfoFromRedmine.py ./
+
+COPY dbQuery.py ./
+
+COPY cc_notify.py ./
 
 RUN dnf install -y python3.11 pip
 

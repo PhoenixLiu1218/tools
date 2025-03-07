@@ -45,21 +45,20 @@ def getID():
     # print(f"User ID: {user.id}, Login: {user.login}, Name: {user.firstname} {user.lastname}")
     return user.id
 
+if __name__ == '__main__':
+    ticketStatus = setStatusId()
+    userID = getID()
 
-ticketStatus = setStatusId()
-userID = getID()
+    date = (datetime.today() - timedelta(days=3)).strftime("%Y-%m-%d")
 
+    issues = redmine.issue.filter(status_id=ticketStatus,updated_on=f"<={date}",author_id=userID)
+    issue_dict={}
+    field_names = ['ID','Subject','Author','Last Updated']
 
-date = (datetime.today() - timedelta(days=1)).strftime("%Y-%m-%d")
-
-issues = redmine.issue.filter(status_id=ticketStatus,updated_on=f"<={date}",author_id=userID)
-issue_dict={}
-field_names = ['ID','Subject','Last Updated']
-
-if issues:
-    with open(csv_path,'a') as file:
-        for info in issues:
-            issue_dict.update({'ID': info.id,'Subject': info.subject,'Last Updated': info.updated_on})
-            writer_object = DictWriter(file,fieldnames=field_names )
-            writer_object.writerow(issue_dict)
-    file.close()
+    if issues:
+        with open(csv_path,'a') as file:
+            for info in issues:
+                issue_dict.update({'ID': info.id,'Subject': info.subject,'Author':info.author.name,'Last Updated': info.updated_on})
+                writer_object = DictWriter(file,fieldnames=field_names )
+                writer_object.writerow(issue_dict)
+        file.close()
